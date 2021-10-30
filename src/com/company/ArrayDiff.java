@@ -1,33 +1,32 @@
 package com.company;
 
-// code no worky worky
+/*
+Function that implements a difference function, which subtracts oen list from another and returns the result.
+Should remove all values from a, which are present in b.
+If a value is present in b, all occurrences must be removed from the other.
+example: arrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}
+ */
+
+//author: Avery Hanulcik
+//date: 30 OCT 2021
+
+import java.util.ArrayList;
 
 public class ArrayDiff {
     public static int[] arrayDiff(int[] a, int[] b) {
-        StringBuilder aArr = new StringBuilder();
-        StringBuilder bArr = new StringBuilder();
 
-        // account for empty array
-        if (a.length == 0) return a;
-        if (b.length == 0) return a;
+        // convert args[] to array list
+        ArrayList listA = new ArrayList();
+        ArrayList listB = new ArrayList();
+        for (int i : a) listA.add(i);
+        for (int i : b) listB.add(i);
 
-        // convert b to char array
-        for (int i : b) bArr.append(i);
-        String bStr = bArr.toString();
+        //logic
+        listA.removeAll(listB);
 
-        // if a isn't in b, add it
-        for (int i : a) {
-            if (bStr.charAt((char) i) == -1) aArr.append(i);
-        }
-
-        String str = aArr.toString();
-        char[] ch = str.toCharArray();
-        int[] answer = new int[ch.length];
-        int counter = 0;
-        for (char c : ch) {
-            answer[counter] = Character.getNumericValue(c);
-        }
-
+        //convert array list back to int[]
+        int[] answer = new int[listA.size()];
+        for (int i = 0; i < listA.size(); i++) answer[i] = (int) listA.get(i);
         return answer;
     }
 }
