@@ -1,5 +1,6 @@
 package com.company;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 
@@ -8,75 +9,49 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[][] threeByThree = { {1,2,3},
-                                 {4,5,6},
-                                 {7,8,9} };
+        int[][] test1 = {
+                {5, 3, 4, 6, 7, 8, 9, 1, 2},
+                {6, 7, 2, 1, 9, 5, 3, 4, 8},
+                {1, 9, 8, 3, 4, 2, 5, 6, 7},
+                {8, 5, 9, 7, 6, 1, 4, 2, 3},
+                {4, 2, 6, 8, 5, 3, 7, 9, 1},
+                {7, 1, 3, 9, 2, 4, 8, 5, 6},
+                {9, 6, 1, 5, 3, 7, 2, 8, 4},
+                {2, 8, 7, 4, 1, 9, 6, 3, 5},
+                {3, 4, 5, 2, 8, 6, 1, 7, 9}
+        };
 
-        int[][] fourByFour = { {1,2,3,4},
-                               {5,6,7,8},
-                               {9,10,11,12},
-                               {13,14,15,16}};
-
-        System.out.println(Arrays.toString(snail(threeByThree)));
+        double[] d = {1,1,1};
+        double dbl = 5;
+        System.out.println(Arrays.toString(tribonnaci(d,10)));
+        System.out.println(dbl);
     }
 
 
 
-    public static int[] snail(int[][] array) {
+    public static double[] tribonnaci(double[] s, int n) {
 
-        ArrayList<Integer> answer = new ArrayList<Integer>();
+        if (n < 3) return new double[]{};
+        DecimalFormat format = new DecimalFormat("0.#");
 
-        int size = array.length * array[0].length;
-        int step = 0;
+        ArrayList<Double> sequence = new ArrayList<Double>();
+        for (double d : s) sequence.add(d);
+        int lo = 0;
 
-        int rowMin = 0;
-        int colMin = 0;
-        int rowMax = array[0].length-1;
-        int colMax = array.length-1;
+        while (lo < n-3) {
 
-        while (step != size) {
-
-            //left to right
-            for (int i = colMin; i <= colMax; i++) {
-                answer.add(array[rowMin][i]);
-                step++;
-            }
-            rowMin++;
-
-            if (step == size) break;
-
-            //top to bottom
-            for (int k = rowMin; k <= rowMax; k++) {
-                answer.add(array[k][colMax]);
-                step++;
-            }
-            colMax--;
-
-            if (step == size) break;
-
-            //right to left
-            for (int a = colMax; a >= colMin; a--) {
-                answer.add(array[rowMax][a]);
-                step++;
-            }
-            rowMax--;
-
-            if (step == size) break;
-
-            //bottom to top
-            for (int b = rowMax; b >= rowMin; b--) {
-                answer.add(array[b][colMin]);
-                step++;
-            }
-            colMin++;
+            Double sum = sequence.get(lo) + sequence.get(lo+1) + sequence.get(lo+2);
+            sequence.add(sum);
+            lo++;
 
         }
 
-        int[] arr = answer.stream().mapToInt(i -> i).toArray();
-        return arr;
+        return sequence.stream().mapToDouble(Double::doubleValue).toArray();
     }
 
+
     }
+
 
 
 
