@@ -6,9 +6,7 @@ public class IsIsogram {
         str.toLowerCase();
         char[] ch = str.toCharArray();
         for (char c : ch) {
-            for (char e : ch) {
-                if (c == e) return false;
-            }
+            if (str.lastIndexOf(c) == str.indexOf(c)) return false;
         }
         return true;
     }

@@ -5,8 +5,8 @@ public class squareSUm {
         int sum = 0;
         for (int i : n) {
             if (i == 0) continue;
-            sum += (i * 2);
+            sum += Math.pow(i,2);
         }
-        return sum-1;
+        return sum;
     }
 }

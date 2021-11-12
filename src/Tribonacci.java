@@ -10,7 +10,11 @@ import java.util.ArrayList;
 
 
 public class Tribonacci {
-    public double[] tribonnaci(double[] s, int n) {
+    public double[] tribonaci(double[] s, int n) {
+        if (n == 0) return new double[]{};
+        if (n == 1) return new double[]{s[0]};
+        if (n == 2) return new double[]{s[0], s[1]};
+        if (n == 3) return new double[]{s[0], s[1], s[2]};
 
         ArrayList<Double> sequence = new ArrayList<Double>();
         for (double d : s) sequence.add(d);

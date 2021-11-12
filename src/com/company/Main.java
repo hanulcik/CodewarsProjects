@@ -1,5 +1,7 @@
 package com.company;
 
+import javax.imageio.plugins.jpeg.JPEGImageReadParam;
+import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -9,57 +11,51 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String test = "apples, pears # and bananas\ngrapes\nbananas !apples";
-        String[] symbols = {"#", "!"};
+        BigInteger test = BigInteger.valueOf(5);
 
-        System.out.println(stripComments(test, symbols));
-//        System.out.println(indexSymbol(test, symbols));
+
+        System.out.println(perimeter(test));
     }
 
 
 
 
-        public static String stripComments(String text, String[] commentSymbols) {
-            int totalSteps = text.length();
-            int counter = 0;
 
-            while (containsSymbol(text, commentSymbols) && counter < totalSteps) {
-                int indexNewline = text.indexOf("\n", indexSymbol(text, commentSymbols));
-                if (indexNewline == -1) indexNewline = text.length() - 1;
-                String comment = text.substring(indexSymbol(text, commentSymbols), indexNewline);
-                text = text.substring(0, indexSymbol(text, commentSymbols)) + text.substring(indexNewline, text.length()-1);
-                counter++;
+        public static BigInteger perimeter(BigInteger n) {
+            BigInteger sum = BigInteger.valueOf(0);
+            n = n.add(BigInteger.valueOf(2));
+            BigInteger[] arr = fibonacci(n);
+            for (BigInteger num : arr) {
+                sum = sum.add(num);
             }
-
-//            if (text.endsWith(" ")) text = text.substring(0, text.length() - 1);
-
-            return text;
+            return sum.multiply(BigInteger.valueOf(4));
         }
 
 
+        public static BigInteger[] fibonacci(BigInteger n) {
+            ArrayList<BigInteger> arr = new ArrayList<>();
+            StringBuilder sb = new StringBuilder();
+            BigInteger num1 = BigInteger.valueOf(0);
+            BigInteger num2 = BigInteger.valueOf(1);
 
+            BigInteger counter = BigInteger.valueOf(0);
 
+            // Iterate till counter is N
+            while (counter.compareTo(n) < 0) {
 
+                // add number to long array
+                arr.add(num1);
 
-        public static boolean containsSymbol(String text, String[] symbols) {
-            for (int k = 0; k < symbols.length; k++) if (text.contains(symbols[k])) return true;
-            return false;
-        }
-
-        public static int indexSymbol(String text, String[] symbols) {
-            int index = 0;
-            char[] array = text.toCharArray();
-            for (char ch : array) {
-                if (isSymbol(ch, symbols)) return index;
-                index++;
+                // Swap
+                BigInteger num3 = num2.add(num1);
+                num1 = num2;
+                num2 = num3;
+                counter = counter.add(BigInteger.valueOf(1));
             }
-            return -1;
+            return arr.toArray(new BigInteger[arr.size()]);
         }
 
-        public static boolean isSymbol(char c, String[] commentSymbols) {
-            for (int k = 0; k < commentSymbols.length; k++) if (commentSymbols[k].charAt(0) == c) return true;
-            return false;
-        }
+
 }
 
 
