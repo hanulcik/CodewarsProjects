@@ -63,7 +63,7 @@ public class Calculator {
      * @return
      *
      * TODO:
-     * Always reduces the origional expression by the entire subexpression, must
+     * Always reduces the original expression by the entire subexpression, must
      * add functionality to check if parenthesis need to be removed or not.
      */
     public static String parenthesisLoop(String expression) {
