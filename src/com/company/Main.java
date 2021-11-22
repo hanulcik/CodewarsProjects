@@ -13,20 +13,30 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String test = "9DF2";
+        int[] test = new int[]{9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 
 
-        System.out.println(isHexNumber(test));
+        System.out.println(Arrays.toString(sortArray(test)));
     }
 
 
 
 
 
-    public static boolean isHexNumber(String s) {
-        String regex = "[A-F0-9]+";
-        if (s.matches(regex)) return true;
-        return false;
+    public static int[] sortArray(int[] array) {
+        ArrayList<Integer> odds = new ArrayList<>();
+        ArrayList<Integer> evens = new ArrayList<>();
+        for (int i : array) {
+            if (array[i] % 2 == 0) odds.add(i);
+            if (array[i] % 2 != 0) evens.add(i);
+        }
+        Collections.sort(odds);
+        int evenCount = 0; int oddCount = 0;
+        for (int i : array) {
+            if (array[i] % 2 == 0) { array[i] = evens.get(evenCount); evenCount++; }
+            if (array[i] % 2 != 0) { array[i] = odds.get(oddCount); oddCount++; }
+        }
+        return array;
     }
 
 
