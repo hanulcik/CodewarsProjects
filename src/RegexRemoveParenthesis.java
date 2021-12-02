@@ -6,6 +6,7 @@ public class RegexRemoveParenthesis {
         Pattern ptrn = Pattern.compile("\\(.*[^(]\\)");
         Matcher m = ptrn.matcher(str);
         while (m.find()) str = str.replace(m.group(), "");
+
         return str;
     }
 }
